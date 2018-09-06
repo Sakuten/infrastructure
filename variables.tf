@@ -6,7 +6,7 @@ variable "domain" {
 }
 variable "regions" {
   default = {
-    tokyo    = "ap-northeast-1"
+    tokyo = "ap-northeast-1"
   }
 }
 
