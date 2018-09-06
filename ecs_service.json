@@ -1,6 +1,6 @@
 [
   {
-    "name": "sakuten-backend",
+    "name": "sakuten_backend",
     "image": "389602053363.dkr.ecr.ap-northeast-1.amazonaws.com/sakuten",
     "cpu": 10,
     "memory": 512,
