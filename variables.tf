@@ -13,4 +13,6 @@ variable "regions" {
 variable "db_username" {}
 variable "db_password" {}
 
-variable "admin_cidr_ingress" {}
+variable "admin_cidr_ingress" {
+  default = "0.0.0.0/0"
+}
