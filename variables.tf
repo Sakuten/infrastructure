@@ -10,6 +10,9 @@ variable "regions" {
   }
 }
 
+variable "aws_access_key" {}
+variable "aws_secret_key" {}
+
 variable "db_username" {}
 variable "db_password" {}
 variable "ssh_public_key" {}
