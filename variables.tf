@@ -9,3 +9,6 @@ variable "regions" {
     tokyo    = "ap-northeast-1"
   }
 }
+
+variable "db_username" {}
+variable "db_password" {}
