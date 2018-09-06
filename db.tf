@@ -6,7 +6,7 @@ resource "aws_db_subnet_group" "main" {
   }
 }
 
-resource "aws_db_parameter_group" "default" {
+resource "aws_db_parameter_group" "db_pg" {
   name = "rds-pg"
   family = "postgres10.4"
   description = "Managed by Terraform"
@@ -39,5 +39,6 @@ resource "aws_db_instance" "db" {
   backup_retention_period = 7
   vpc_security_group_ids  = ["${aws_security_group.db.id}"]
   db_subnet_group_name    = "${aws_db_subnet_group.main.name}"
+  parameter_group_name = "${aws_db_parameter_group.db_pg.name}"
 }
 
