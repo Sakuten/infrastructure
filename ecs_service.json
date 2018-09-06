@@ -1,0 +1,17 @@
+[
+  {
+    "name": "sakuten-backend",
+    "image": "<YOUR_REPOSITORY_URL_HERE>",
+    "cpu": 10,
+    "memory": 512,
+    "essential": true,
+    "entryPoint": [],
+    "environment": [],
+    "portMappings": [
+      {
+        "containerPort": 8080,
+        "hostPort": 8080
+      }
+    ]
+  }
+]
