@@ -8,22 +8,12 @@ resource "aws_db_subnet_group" "main" {
 
 resource "aws_db_parameter_group" "db_pg" {
   name = "rds-pg"
-  family = "postgres10.4"
+  family = "postgres10"
   description = "Managed by Terraform"
 
   parameter {
-    name = "time_zone"
+    name = "timezone"
     value = "Asia/Tokyo"
-  }
-
-  parameter {
-    name  = "character_set_server"
-    value = "utf8"
-  }
-
-  parameter {
-    name  = "character_set_client"
-    value = "utf8"
   }
 }
 
