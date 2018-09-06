@@ -7,6 +7,7 @@ data "template_file" "ecs_service" {
 
   vars {
     secret_key = "${var.secret_key}"
+    recaptcha_secret_key = "${var.recaptcha_secret_key}"
     database_url = "postgresql://${var.db_username}:${var.db_password}@${aws_db_instance.db.endpoint}/postgres"
   }
 }

@@ -6,7 +6,7 @@
     "memory": 512,
     "essential": true,
     "entryPoint": [],
-    "environment": ["FLASK_CONFIGURATION=deployment", "SECRET_KEY=${secret_key}", "DATABASE_URL=${database_url}"],
+    "environment": ["FLASK_CONFIGURATION=deployment", "SECRET_KEY=${secret_key}", "DATABASE_URL=${database_url}", "RECAPTCHA_SECRET_KEY=${recaptcha_secret_key}"],
     "portMappings": [
       {
         "containerPort": 80,
