@@ -1,12 +1,26 @@
 [
   {
     "name": "sakuten-backend",
-    "image": "<YOUR_REPOSITORY_URL_HERE>",
+    "image": "389602053363.dkr.ecr.ap-northeast-1.amazonaws.com/sakuten",
     "cpu": 10,
     "memory": 512,
     "essential": true,
     "entryPoint": [],
-    "environment": ["FLASK_CONFIGURATION=deployment", "SECRET_KEY=${secret_key}", "DATABASE_URL=${database_url}", "RECAPTCHA_SECRET_KEY=${recaptcha_secret_key}"],
+    "environment": [
+      {
+        "name": "FLASK_CONFIGURATION",
+        "value": "deployment"
+      }, {
+        "name": "SECRET_KEY",
+        "value": "${secret_key}"
+      }, {
+        "name": "DATABASE_URL",
+        "value": "${database_url}"
+      }, {
+        "name": "RECAPTCHA_SECRET_KEY",
+        "value": "${recaptcha_secret_key}"
+      }
+    ],
     "portMappings": [
       {
         "containerPort": 80,
