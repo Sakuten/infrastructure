@@ -27,7 +27,7 @@ variable "admin_cidr_ingress" {
 }
 
 variable "elb_health_check_endpoint" {
-  default = "/index.html"
+  default = "/lotteries"
 }
 
 variable "db_instance_type" {
