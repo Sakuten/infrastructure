@@ -2,7 +2,7 @@ variable "name" {
   default = "poacpm"
 }
 variable "domain" {
-  default = "sakuten.jp"
+  default = "api.sakuten.jp"
 }
 variable "regions" {
   default = {
