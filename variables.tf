@@ -2,7 +2,10 @@ variable "name" {
   default = "sakuten"
 }
 variable "domain" {
-  default = "api.sakuten.jp"
+  default = "sakuten.jp"
+}
+variable "api_subdomain" {
+  default = "api"
 }
 variable "regions" {
   default = {
