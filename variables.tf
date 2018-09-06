@@ -12,3 +12,5 @@ variable "regions" {
 
 variable "db_username" {}
 variable "db_password" {}
+
+variable "admin_cidr_ingress" {}
