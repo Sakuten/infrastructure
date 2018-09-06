@@ -35,7 +35,7 @@ variable "db_instance_type" {
   default = "db.t2.small"
 }
 variable "ec2_ami" {
-  default = "ami-0567c164"
+  default = "ami-0041c416aa23033a2"
 }
 
 variable "ec2_instance_type" {
