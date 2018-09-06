@@ -34,8 +34,8 @@ resource "aws_db_instance" "db" {
   engine_version          = "10.4"
   instance_class          = "db.m4.large"
   storage_type            = "gp2"
-  username                = "***"
-  password                = "***"
+  username                = "${var.db_username}"
+  password                = "${var.db_password}"
   backup_retention_period = 7
   vpc_security_group_ids  = ["${aws_security_group.db.id}"]
   db_subnet_group_name    = "${aws_db_subnet_group.main.name}"
