@@ -30,12 +30,15 @@ variable "elb_health_check_endpoint" {
   default = "/index.html"
 }
 
+variable "db_instance_type" {
+  default = "db.t2.small"
+}
 variable "ec2_ami" {
   default = "ami-0567c164"
 }
 
 variable "ec2_instance_type" {
-  default = "m4.medium"
+  default = "t2.small"
 }
 
 variable "ec2_gp2_size" {
