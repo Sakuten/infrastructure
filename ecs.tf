@@ -1,5 +1,5 @@
 resource "aws_ecs_cluster" "main" {
-  name = "${var.name}"
+  name = "${var.name}_cluster"
 }
 
 data "template_file" "ecs_service" {
