@@ -10,7 +10,6 @@ resource "aws_elb" "elb" {
     unhealthy_threshold = 2
   }
   idle_timeout = 300
-  instances = ["${aws_instance.app.id}"]
   listener {
     instance_port = 80
     instance_protocol = "http"
