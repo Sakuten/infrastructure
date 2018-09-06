@@ -1,5 +1,5 @@
 variable "name" {
-  default = "poacpm"
+  default = "sakuten"
 }
 variable "domain" {
   default = "api.sakuten.jp"
