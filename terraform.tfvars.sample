@@ -2,5 +2,8 @@ aws_access_key = "<YOUR_ACCESS_KEY_HERE>"
 aws_secret_key = "<YOUR_SECRET_KEY_HERE>"
 aws_id = "<YOUR_AWS_ID_HERE>"
 
+secret_key = "<Fernet Secret key>"
+recaptcha_secret_key = "<reCAPTCHA v3 secret key>"
 db_username = "<DB USERNAME>"
 db_password = "<DB PASSWORD>"
+ssh_public_key = "<SSH PUBLICKEY>"
