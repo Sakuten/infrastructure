@@ -12,7 +12,7 @@ data "template_file" "task_definition" {
     log_group_name   = "${aws_cloudwatch_log_group.app.name}"
     secret_key = "${var.secret_key}"
     container_port = "${var.container_port}"
-    host_port = "8080"
+    host_port = "${var.alb_container_port}"
     recaptcha_secret_key = "${var.recaptcha_secret_key}"
     database_url = "postgresql://${var.db_username}:${var.db_password}@${aws_db_instance.db.endpoint}/postgres"
   }

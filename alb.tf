@@ -1,6 +1,6 @@
 resource "aws_alb_target_group" "main" {
   name     = "tf-${var.base_name}-ecs"
-  port     = 8080
+  port     = "${var.alb_container_port}"
   protocol = "HTTP"
   vpc_id   = "${aws_vpc.main.id}"
 }
