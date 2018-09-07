@@ -14,12 +14,9 @@ resource "aws_launch_configuration" "app" {
     instance_type = "${var.ec2_instance_type}"
     iam_instance_profile = "${aws_iam_instance_profile.ecs.id}"
     key_name = "${aws_key_pair.instance.key_name}"
-    security_groups = ["${aws_security_group.instance.id}"]
-    associate_public_ip_address = false
+    security_groups = ["${aws_security_group.internal.id}"]
+    associate_public_ip_address = true
     user_data = "${file("api-ecs.sh")}"
-    lifecycle {
-        create_before_destroy = true
-    }
 }
 
 resource "aws_autoscaling_group" "app" {

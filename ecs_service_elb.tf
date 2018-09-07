@@ -11,7 +11,7 @@ resource "aws_iam_role_policy" "ecs_service" {
 
 resource "aws_ecs_service" "service" {
   cluster = "${aws_ecs_cluster.main.id}"
-  name = "${var.name}"
+  name = "${var.name}_service"
   depends_on = ["aws_iam_role_policy.ecs_service"]
   desired_count = 2
   iam_role = "${aws_iam_role.ecs_service.arn}"

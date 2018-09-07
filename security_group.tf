@@ -64,6 +64,30 @@ resource "aws_security_group" "instance" {
   }
 }
 
+resource "aws_security_group" "internal" {
+  vpc_id      = "${aws_vpc.main.id}"
+  name        = "internal"
+  description = "Allow internal traffic"
+
+  ingress {
+    from_port = 0
+    to_port   = 65535
+    protocol  = "tcp"
+    self      = true
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags {
+    Name = "internal"
+  }
+}
+
 resource "aws_security_group" "allow_all" {
   name        = "allow_all"
   description = "Allow all traffic"

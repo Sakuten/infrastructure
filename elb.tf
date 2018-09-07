@@ -18,7 +18,7 @@ resource "aws_elb" "elb" {
   }
   name = "${var.name}-elb"
   subnets = ["${aws_subnet.public3.id}", "${aws_subnet.public4.id}"]
-  security_groups = ["${aws_security_group.lb.id}"]
+  security_groups = ["${aws_security_group.internal.id}", "${aws_security_group.lb.id}"]
   tags {
     Name = "${var.name}_elb"
   }
