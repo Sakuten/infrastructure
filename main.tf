@@ -36,7 +36,7 @@ resource "aws_route_table_association" "a" {
 ### Compute
 
 resource "aws_autoscaling_group" "app" {
-  name                 = "tf-main-asg"
+  name                 = "tf-${var.base_name}-asg"
   vpc_zone_identifier  = ["${aws_subnet.main.*.id}"]
   min_size             = "${var.asg_min}"
   max_size             = "${var.asg_max}"
@@ -104,7 +104,7 @@ resource "aws_security_group" "lb_sg" {
   description = "controls access to the application ELB"
 
   vpc_id = "${aws_vpc.main.id}"
-  name   = "tf-ecs-lbsg"
+  name   = "tf-${var.base_name}-ecs-lbsg"
 
   ingress {
     protocol    = "tcp"
@@ -199,7 +199,7 @@ resource "aws_ecs_task_definition" "backend" {
 }
 
 resource "aws_ecs_service" "main" {
-  name            = "tf-ecs-backend"
+  name            = "tf-${var.base_name}-ecs"
   cluster         = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.backend.arn}"
   desired_count   = 1
@@ -265,12 +265,12 @@ EOF
 }
 
 resource "aws_iam_instance_profile" "app" {
-  name = "tf-ecs-instprofile"
+  name = "tf-${var.base_name}-ecs-instprofile"
   role = "${aws_iam_role.app_instance.name}"
 }
 
 resource "aws_iam_role" "app_instance" {
-  name = "tf-ecs-instance-role"
+  name = "tf-${var.base_name}-ecs-instance-role"
 
   assume_role_policy = <<EOF
 {
@@ -307,14 +307,14 @@ resource "aws_iam_role_policy" "instance" {
 ## ALB
 
 resource "aws_alb_target_group" "main" {
-  name     = "tf-ecs-backend"
+  name     = "tf-${var.base_name}-ecs"
   port     = 8080
   protocol = "HTTP"
   vpc_id   = "${aws_vpc.main.id}"
 }
 
 resource "aws_alb" "main" {
-  name            = "tf-alb-ecs"
+  name            = "tf-${var.base_name}-alb-ecs"
   subnets         = ["${aws_subnet.main.*.id}"]
   security_groups = ["${aws_security_group.lb_sg.id}"]
 }
@@ -333,9 +333,9 @@ resource "aws_alb_listener" "front_end" {
 ## CloudWatch Logs
 
 resource "aws_cloudwatch_log_group" "ecs" {
-  name = "tf-ecs-group/ecs-agent"
+  name = "tf-${var.base_name}-ecs-group/ecs-agent"
 }
 
 resource "aws_cloudwatch_log_group" "app" {
-  name = "tf-ecs-group/app-backend"
+  name = "tf-${var.base_name}-ecs-group/app-backend"
 }
