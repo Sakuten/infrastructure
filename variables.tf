@@ -56,3 +56,7 @@ variable "container_port" {
 variable "elb_container_port" {
   default     = "8080"
 }
+
+variable "domain" {
+  default = "sakuten.jp"
+}
