@@ -36,7 +36,7 @@ resource "aws_route_table_association" "a" {
 ### Compute
 
 resource "aws_autoscaling_group" "app" {
-  name                 = "tf-test-asg"
+  name                 = "tf-main-asg"
   vpc_zone_identifier  = ["${aws_subnet.main.*.id}"]
   min_size             = "${var.asg_min}"
   max_size             = "${var.asg_max}"
@@ -51,7 +51,7 @@ data "template_file" "cloud_config" {
     aws_region         = "${var.aws_region}"
     ecs_cluster_name   = "${aws_ecs_cluster.main.name}"
     ecs_log_level      = "info"
-    ecs_agent_version  = "latest"
+    ecs_agent_version  = "lamain"
     ecs_log_group_name = "${aws_cloudwatch_log_group.ecs.name}"
   }
 }
@@ -198,15 +198,15 @@ resource "aws_ecs_task_definition" "backend" {
   container_definitions = "${data.template_file.task_definition.rendered}"
 }
 
-resource "aws_ecs_service" "test" {
+resource "aws_ecs_service" "main" {
   name            = "tf-ecs-backend"
   cluster         = "${aws_ecs_cluster.main.id}"
-  task_definition = "${aws_ecs_task_definition.sakuten_backend.arn}"
+  task_definition = "${aws_ecs_task_definition.backend.arn}"
   desired_count   = 1
   iam_role        = "${aws_iam_role.ecs_service.name}"
 
   load_balancer {
-    target_group_arn = "${aws_alb_target_group.test.id}"
+    target_group_arn = "${aws_alb_target_group.main.id}"
     container_name   = "sakuten_backend"
     container_port   = "80"
   }
@@ -306,7 +306,7 @@ resource "aws_iam_role_policy" "instance" {
 
 ## ALB
 
-resource "aws_alb_target_group" "test" {
+resource "aws_alb_target_group" "main" {
   name     = "tf-ecs-backend"
   port     = 8080
   protocol = "HTTP"
@@ -325,7 +325,7 @@ resource "aws_alb_listener" "front_end" {
   protocol          = "HTTP"
 
   default_action {
-    target_group_arn = "${aws_alb_target_group.test.id}"
+    target_group_arn = "${aws_alb_target_group.main.id}"
     type             = "forward"
   }
 }
