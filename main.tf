@@ -182,7 +182,7 @@ resource "aws_security_group" "db" {
 ## ECS
 
 resource "aws_ecs_cluster" "main" {
-  name = "terraform_example_ecs_cluster"
+  name = "terraform_ecs_cluster"
 }
 
 data "template_file" "task_definition" {
@@ -200,12 +200,12 @@ data "template_file" "task_definition" {
 }
 
 resource "aws_ecs_task_definition" "backend" {
-  family                = "tf_example_backend_td"
+  family                = "tf_backend_td"
   container_definitions = "${data.template_file.task_definition.rendered}"
 }
 
 resource "aws_ecs_service" "test" {
-  name            = "tf-example-ecs-backend"
+  name            = "tf-ecs-backend"
   cluster         = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.sakuten_backend.arn}"
   desired_count   = 1
@@ -226,7 +226,7 @@ resource "aws_ecs_service" "test" {
 ## IAM
 
 resource "aws_iam_role" "ecs_service" {
-  name = "tf_example_ecs_role"
+  name = "tf_ecs_role"
 
   assume_role_policy = <<EOF
 {
@@ -246,7 +246,7 @@ EOF
 }
 
 resource "aws_iam_role_policy" "ecs_service" {
-  name = "tf_example_ecs_policy"
+  name = "tf_ecs_policy"
   role = "${aws_iam_role.ecs_service.name}"
 
   policy = <<EOF
@@ -276,7 +276,7 @@ resource "aws_iam_instance_profile" "app" {
 }
 
 resource "aws_iam_role" "app_instance" {
-  name = "tf-ecs-example-instance-role"
+  name = "tf-ecs-instance-role"
 
   assume_role_policy = <<EOF
 {
@@ -313,14 +313,14 @@ resource "aws_iam_role_policy" "instance" {
 ## ALB
 
 resource "aws_alb_target_group" "test" {
-  name     = "tf-example-ecs-backend"
+  name     = "tf-ecs-backend"
   port     = 8080
   protocol = "HTTP"
   vpc_id   = "${aws_vpc.main.id}"
 }
 
 resource "aws_alb" "main" {
-  name            = "tf-example-alb-ecs"
+  name            = "tf-alb-ecs"
   subnets         = ["${aws_subnet.main.*.id}"]
   security_groups = ["${aws_security_group.lb_sg.id}"]
 }
