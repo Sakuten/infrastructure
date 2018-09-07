@@ -11,6 +11,8 @@ data "template_file" "task_definition" {
     log_group_region = "${var.aws_region}"
     log_group_name   = "${aws_cloudwatch_log_group.app.name}"
     secret_key = "${var.secret_key}"
+    container_port = "${var.container_port}"
+    host_port = "8080"
     recaptcha_secret_key = "${var.recaptcha_secret_key}"
     database_url = "postgresql://${var.db_username}:${var.db_password}@${aws_db_instance.db.endpoint}/postgres"
   }
@@ -31,7 +33,7 @@ resource "aws_ecs_service" "main" {
   load_balancer {
     target_group_arn = "${aws_alb_target_group.main.id}"
     container_name   = "sakuten_backend"
-    container_port   = "80"
+    container_port   = "${var.container_port}"
   }
 
   depends_on = [
