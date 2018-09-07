@@ -51,7 +51,7 @@ data "template_file" "cloud_config" {
     aws_region         = "${var.aws_region}"
     ecs_cluster_name   = "${aws_ecs_cluster.main.name}"
     ecs_log_level      = "info"
-    ecs_agent_version  = "lamain"
+    ecs_agent_version  = "latest"
     ecs_log_group_name = "${aws_cloudwatch_log_group.ecs.name}"
   }
 }
