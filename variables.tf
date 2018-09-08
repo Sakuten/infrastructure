@@ -60,3 +60,7 @@ variable "elb_container_port" {
 variable "domain" {
   default = "sakuten.jp"
 }
+
+variable "netlify_domain" {
+  default = "sakuten-deployment.netlify.com"
+}

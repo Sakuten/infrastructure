@@ -15,7 +15,7 @@ resource "aws_route53_record" "www" {
    name = "www.${var.domain}"
    type = "CNAME"
    ttl = "300"
-   records = ["sakuten-deployment.netlify.com"]
+   records = ["${var.netlify_domain}"]
 }
 
 resource "aws_route53_record" "api" {
