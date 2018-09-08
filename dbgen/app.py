@@ -1,3 +1,8 @@
+import sys
+import os
+
+sys.path.append(os.path.join(os.getcwd(), "backend"))
+
 from backend.api.app import init_and_generate
 from backend.api.config import BaseConfig
 from backend.api.models import db
@@ -15,3 +20,6 @@ def gen():
 
     with app.app_context():
         init_and_generate()
+
+if __name__ == '__main__':
+    gen()
