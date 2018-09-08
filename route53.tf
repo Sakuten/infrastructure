@@ -17,3 +17,15 @@ resource "aws_route53_record" "www" {
    ttl = "300"
    records = ["sakuten-deployment.netlify.com"]
 }
+
+resource "aws_route53_record" "api" {
+   zone_id = "${aws_route53_zone.sakuten.zone_id}"
+   name = "api.${var.domain}"
+   type = "A"
+
+   alias {
+     name                   = "${aws_elb.main.dns_name}"
+     zone_id                = "${aws_elb.main.zone_id}"
+     evaluate_target_health = true
+   }
+}
