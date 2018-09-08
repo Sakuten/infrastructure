@@ -14,7 +14,7 @@ def gen():
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
     app.config['ID_LIST_FILE'] = './ids.json'
     app.config['DB_GEN_POLICY'] = 'always'
-    app.config['DB_FORCE_INIT'] = True
+    app.config['DB_FORCE_INIT'] = False
 
     db.init_app(app)
 
