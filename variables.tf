@@ -53,7 +53,7 @@ variable "container_port" {
   default     = "80"
 }
 
-variable "elb_container_port" {
+variable "alb_container_port" {
   default     = "8080"
 }
 
