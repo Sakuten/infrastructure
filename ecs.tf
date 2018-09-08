@@ -6,7 +6,7 @@ data "template_file" "task_definition" {
   template = "${file("${path.module}/task-definition.json")}"
 
   vars {
-    image_url        = "389602053363.dkr.ecr.ap-northeast-1.amazonaws.com/sakuten:latest"
+    image_url        = "sakuten/backend:latest"
     container_name   = "sakuten_backend"
     log_group_region = "${var.aws_region}"
     log_group_name   = "${aws_cloudwatch_log_group.app.name}"
