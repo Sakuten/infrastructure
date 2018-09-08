@@ -1,4 +1,5 @@
-DELIVERABLE?=./function.zip
+FILE?=./function.zip
+DELIVERABLE=${abspath ${FILE}}
 
 ${DELIVERABLE}: $(wildcard ./*)
 	zip -r9 ${DELIVERABLE} ./*
