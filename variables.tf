@@ -73,7 +73,7 @@ variable "domain" {
 }
 
 variable "netlify_domain" {
-  default = "sakuten-deployment.netlify.com"
+  default = "sakuten.netlify.com"
 }
 
 variable "health_check_path" {
