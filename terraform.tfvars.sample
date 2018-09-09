@@ -11,3 +11,6 @@ recaptcha_secret_key = "<reCAPTCHA v3 secret key>"
 db_username = "<DB USERNAME>"
 db_password = "<DB PASSWORD>"
 ssh_public_key = "<SSH PUBLICKEY>"
+
+// Use this in production!
+// acme_server_url = "https://acme-v02.api.letsencrypt.org/directory"
