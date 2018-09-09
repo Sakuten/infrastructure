@@ -59,6 +59,7 @@ resource "aws_lambda_function" "gen_db" {
   source_code_hash = "${base64sha256(file("dbgen/function.zip"))}"
   runtime          = "python3.6"
   memory_size      = 512
+  timeout          = 10
 
   vpc_config {
     subnet_ids = ["${aws_subnet.main.*.id}"]
