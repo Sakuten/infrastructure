@@ -3,11 +3,16 @@ import sys
 import os
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError
+import ssl
 
 def draw(event, context):
     env_admin_sid = os.environ["ADMIN_SECRET_ID"]
     env_host = os.getenv("API_HOST", "api.sakuten.jp")
     env_protocol = os.getenv("API_PROTOCOL", "https")
+
+    ctx = ssl.create_default_context()
+    ctx.check_hostname = False
+    ctx.verify_mode = ssl.CERT_NONE
 
     def post_json(path, data=None, token=None):
         headers = {"Content-Type": "application/json"}
@@ -18,7 +23,7 @@ def draw(event, context):
         request = Request(url, data=json_data,
                           headers=headers, method='POST')
         try:
-            response = urlopen(request)
+            response = urlopen(request, context=ctx)
         except HTTPError as e:
             print('Error: {}'.format(e.read()), file=sys.stderr)
             sys.exit(-1)
