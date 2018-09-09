@@ -33,6 +33,11 @@ resource "aws_iam_role" "lambda_iam" {
 EOF
 }
 
+resource "aws_iam_role_policy_attachment" "lamba_exec_role_eni" {
+  role = "${aws_iam_role.lambda_iam.name}"
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+}
+
 resource "aws_lambda_function" "gen_db" {
   filename         = "dbgen/function.zip"
   function_name    = "generate_initial_db"
@@ -51,4 +56,6 @@ resource "aws_lambda_function" "gen_db" {
       DATABASE_URL = "postgresql://${var.db_username}:${var.db_password}@${aws_db_instance.db.endpoint}/postgres"
     }
   }
+
+  depends_on = ["aws_iam_role_policy_attachment.lamba_exec_role_eni"]
 }
