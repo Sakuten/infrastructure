@@ -1,7 +1,7 @@
 FILE?=../dbgen_function.zip
 DELIVERABLE=${abspath ${FILE}}
 
-${DELIVERABLE}: $(wildcard ./*.py) Pipfile.lock
+${DELIVERABLE}: $(wildcard ./*.py) ids.json Pipfile.lock
 	-rm ${DELIVERABLE}
 	zip -qr9 ${DELIVERABLE} ./
 	$(eval VENV = $(shell pipenv --venv))
