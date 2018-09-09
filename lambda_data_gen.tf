@@ -8,7 +8,7 @@ resource "aws_cloudwatch_event_target" "dbgen_taget" {
   arn       = "${aws_lambda_function.dbgen.arn}"
 }
 
-resource "aws_lambda_permission" "allow_call" {
+resource "aws_lambda_permission" "allow_call_dbgen" {
   statement_id  = "AllowExecutionFromCloudWatch"
   action        = "lambda:InvokeFunction"
   function_name = "${aws_lambda_function.dbgen.function_name}"
@@ -21,16 +21,16 @@ resource "aws_s3_bucket" "bucket" {
   acl    = "private"
 }
 
-resource "aws_s3_bucket_object" "lambda_function_archive" {
+resource "aws_s3_bucket_object" "dbgen_archive" {
   bucket = "${aws_s3_bucket.bucket.id}"
-  key    = "lambda_function_archive"
+  key    = "dbgen_archive"
   source = "${var.dbgen_archive_path}"
   etag = "${md5(file("${var.dbgen_archive_path}"))}"
 }
 
 resource "aws_lambda_function" "dbgen" {
   s3_bucket        = "${aws_s3_bucket.bucket.id}"
-  s3_key           = "lambda_function_archive"
+  s3_key           = "dbgen_archive"
   function_name    = "generate_initial_db"
   role             = "${aws_iam_role.lambda_iam.arn}"
   handler          = "app.gen"
@@ -50,5 +50,5 @@ resource "aws_lambda_function" "dbgen" {
     }
   }
 
-  depends_on = ["aws_iam_role_policy_attachment.lamba_exec_role_eni", "aws_s3_bucket_object.lambda_function_archive"]
+  depends_on = ["aws_iam_role_policy_attachment.lamba_exec_role_eni", "aws_s3_bucket_object.dbgen_archive"]
 }
