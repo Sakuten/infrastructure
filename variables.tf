@@ -24,6 +24,12 @@ variable "acme_email" {}
 
 variable "ssh_public_key" {}
 
+variable "acme_server_url" {
+  default = "https://acme-staging-v02.api.letsencrypt.org/directory"
+  // Production URL:
+  // default = "https://acme-v02.api.letsencrypt.org/directory"
+}
+
 variable "db_instance_type" {
   default = "db.t2.small"
 }
