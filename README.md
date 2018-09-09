@@ -5,6 +5,8 @@
 ## Deploy
 
 ```bash
+cp <SOMEWHERE> dbgen/ids.json # Add ids.json
+
 cp terraform.tfvars{.sample,}
 vim terraform.tfvars # Set credentials
 
