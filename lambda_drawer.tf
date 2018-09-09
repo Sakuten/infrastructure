@@ -11,12 +11,10 @@ resource "aws_cloudwatch_event_target" "tp_target" {
 }
 
 resource "aws_lambda_permission" "allow_call_tp" {
-  count         = 4
   statement_id  = "AllowExecutionFromCloudWatch"
   action        = "lambda:InvokeFunction"
   function_name = "${aws_lambda_function.drawer.function_name}"
   principal     = "events.amazonaws.com"
-  source_arn    = "${element(aws_cloudwatch_event_rule.tp.*.arn, count.index)}"
 }
 
 data "archive_file" "drawer_archive" {
