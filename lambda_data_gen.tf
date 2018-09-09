@@ -5,13 +5,13 @@ resource "aws_cloudwatch_event_rule" "dbgen" {
 
 resource "aws_cloudwatch_event_target" "dbgen_taget" {
   rule      = "${aws_cloudwatch_event_rule.dbgen.name}"
-  arn       = "${aws_lambda_function.gen_db.arn}"
+  arn       = "${aws_lambda_function.dbgen.arn}"
 }
 
 resource "aws_lambda_permission" "allow_call" {
   statement_id  = "AllowExecutionFromCloudWatch"
   action        = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.gen_db.function_name}"
+  function_name = "${aws_lambda_function.dbgen.function_name}"
   principal     = "events.amazonaws.com"
   source_arn    = "${aws_cloudwatch_event_rule.dbgen.arn}"
 }
@@ -28,7 +28,7 @@ resource "aws_s3_bucket_object" "lambda_function_archive" {
   etag = "${md5(file("dbgen/function.zip"))}"
 }
 
-resource "aws_lambda_function" "gen_db" {
+resource "aws_lambda_function" "dbgen" {
   s3_bucket        = "${aws_s3_bucket.bucket.id}"
   s3_key           = "lambda_function_archive"
   function_name    = "generate_initial_db"
