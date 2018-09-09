@@ -19,3 +19,24 @@ resource "aws_lambda_permission" "allow_call_tp" {
   source_arn    = "${element(aws_cloudwatch_event_rule.tp.*.arn, count.index)}"
 }
 
+data "archive_file" "drawer_archive" {
+  type        = "zip"
+  source_dir  = "${var.drawer_source_path}"
+  output_path = "${var.drawer_archive_path}"
+}
+
+resource "aws_lambda_function" "drawer" {
+  filename         = "${var.drawer_archive_path}"
+  function_name    = "draw_lotteries"
+  role             = "${aws_iam_role.lambda_iam.arn}"
+  handler          = "draw.draw"
+  source_code_hash = "${data.archive_file.drawer_archive.output_base64sha256}"
+  runtime          = "python3.6"
+  timeout          = 10
+
+  environment {
+    variables = {
+      ADMIN_SECRET_ID = "${var.admin_secret_id}"
+    }
+  }
+}
