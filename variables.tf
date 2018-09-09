@@ -34,10 +34,11 @@ variable "acme_server_url" {
 }
 
 variable "db_instance_type" {
-  default = "db.t2.small"
+  default = "db.t2.2xlarge"
 }
+
 variable "instance_type" {
-  default     = "t2.small"
+  default     = "t3.large"
   description = "AWS instance type"
 }
 
