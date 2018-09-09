@@ -4,6 +4,7 @@ aws_id = "<YOUR_AWS_ID_HERE>"
 
 admin_cidr_ingress = "0.0.0.0/0"
 dbgen_schedule = "cron(<WHEN GENERATES DB DATA>)"
+acme_email = "<YOUR EMAIL>"
 
 secret_key = "<Fernet Secret key>"
 recaptcha_secret_key = "<reCAPTCHA v3 secret key>"

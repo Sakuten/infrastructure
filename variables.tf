@@ -20,6 +20,7 @@ variable "recaptcha_secret_key" {}
 variable "db_username" {}
 variable "db_password" {}
 variable "dbgen_schedule" {}
+variable "acme_email" {}
 
 variable "ssh_public_key" {}
 
