@@ -1,11 +1,12 @@
 import json
 import sys
+import os
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError
 
 env_admin_sid = os.environ["ADMIN_SECRET_ID"]
 env_host = os.getenv("API_HOST", "api.sakuten.jp")
-env_protocol_ = os.getenv("API_PROTOCOL", "https")
+env_protocol = os.getenv("API_PROTOCOL", "https")
 
 def post_json(path, data=None, token=None):
     headers = {"Content-Type": "application/json"}
