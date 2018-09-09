@@ -47,6 +47,10 @@ resource "aws_lambda_function" "gen_db" {
   runtime          = "python3.6"
   memory_size      = 512
 
+  timeouts {
+    create = "5m"
+  }
+
   vpc_config {
     subnet_ids = ["${aws_subnet.main.*.id}"]
     security_group_ids = ["${aws_security_group.lambda_sg.id}"]
