@@ -64,3 +64,7 @@ variable "domain" {
 variable "netlify_domain" {
   default = "sakuten-deployment.netlify.com"
 }
+
+variable "health_check_path" {
+  default = "/lotteries"
+}

@@ -3,6 +3,10 @@ resource "aws_alb_target_group" "main" {
   port     = "${var.alb_container_port}"
   protocol = "HTTP"
   vpc_id   = "${aws_vpc.main.id}"
+
+  health_check {
+    path = "${var.health_check_path}"
+  }
 }
 
 resource "aws_alb" "main" {
