@@ -1,12 +1,9 @@
 #!/bin/bash
 
-function info (){
-  echo -e "\033[0;32m-> \033[0m\033[0;01m $1\033[0;0m"
-}
-
 script_root=$(dirname $0)
 
 source $script_root/lib/schedule.sh
+source $script_root/lib/log.sh
 
 gen_extension=${1:-10}
 
