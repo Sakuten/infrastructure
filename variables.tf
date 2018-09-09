@@ -21,6 +21,7 @@ variable "db_username" {}
 variable "db_password" {}
 variable "dbgen_schedule" {}
 variable "acme_email" {}
+variable "admin_secret_id" {}
 
 variable "ssh_public_key" {}
 
@@ -79,4 +80,21 @@ variable "health_check_path" {
 
 variable "dbgen_archive_path" {
   default = "dbgen/function.zip"
+}
+
+variable "drawer_archive_path" {
+  default = "drawer_function.zip"
+}
+
+variable "drawer_source_path" {
+  default = "drawer/"
+}
+
+variable "tps" {
+  default = [
+    "cron(23 0 16,17 9 ? 2018)",
+    "cron(48 1 16,17 9 ? 2018)",
+    "cron(58 3 16,17 9 ? 2018)",
+    "cron(23 5 16,17 9 ? 2018)",
+  ]
 }
