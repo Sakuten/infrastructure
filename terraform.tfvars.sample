@@ -3,7 +3,6 @@ aws_secret_key = "<YOUR_SECRET_KEY_HERE>"
 aws_id = "<YOUR_AWS_ID_HERE>"
 
 admin_cidr_ingress = "0.0.0.0/0"
-dbgen_schedule = "cron(<WHEN GENERATES DB DATA>)"
 acme_email = "<YOUR EMAIL>"
 admin_secret_id = "<ADMIN_SECRET_ID>"
 
