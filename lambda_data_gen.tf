@@ -38,8 +38,21 @@ resource "aws_iam_role_policy_attachment" "lamba_exec_role_eni" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
 }
 
+resource "aws_s3_bucket" "bucket" {
+  bucket = "tf-${var.base_name}-bucket"
+  acl    = "private"
+}
+
+resource "aws_s3_bucket_object" "lambda_function_archive" {
+  bucket = "${aws_s3_bucket.bucket.id}"
+  key    = "lambda_function_archive"
+  source = "dbgen/function.zip"
+  source_code_hash = "${md5(file("dbgen/function.zip"))}"
+}
+
 resource "aws_lambda_function" "gen_db" {
-  filename         = "dbgen/function.zip"
+  s3_bucket        = "${aws_s3_bucket.bucket.id}"
+  s3_key           = "lambda_function_archive"
   function_name    = "generate_initial_db"
   role             = "${aws_iam_role.lambda_iam.arn}"
   handler          = "app.gen"
