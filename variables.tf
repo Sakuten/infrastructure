@@ -19,7 +19,7 @@ variable "secret_key" {}
 variable "recaptcha_secret_key" {}
 variable "db_username" {}
 variable "db_password" {}
-variable "dbgen_cron" {}
+variable "dbgen_schedule" {}
 
 variable "ssh_public_key" {}
 

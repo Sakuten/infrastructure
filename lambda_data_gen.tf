@@ -1,6 +1,6 @@
 resource "aws_cloudwatch_event_rule" "dbgen" {
   name                = "tf-${var.base_name}-dbgen-event"
-  schedule_expression = "${var.dbgen_cron}"
+  schedule_expression = "${var.dbgen_schedule}"
 }
 
 resource "aws_cloudwatch_event_target" "dbgen_taget" {
