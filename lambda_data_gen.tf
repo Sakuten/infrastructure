@@ -1,3 +1,20 @@
+resource "aws_cloudwatch_event_rule" "dbgen" {
+  name                = "tf-${var.base_name}-dbgen-event"
+  schedule_expression = "${var.dbgen_cron}"
+}
+
+resource "aws_cloudwatch_event_target" "dbgen_taget" {
+  rule      = "${aws_cloudwatch_event_rule.dbgen.name}"
+  arn       = "${aws_lambda_function.gen_db.arn}"
+}
+
+resource "aws_lambda_permission" "allow_call" {
+  statement_id  = "AllowExecutionFromCloudWatch"
+  action        = "lambda:InvokeFunction"
+  function_name = "${aws_lambda_function.gen_db.function_name}"
+  principal     = "events.amazonaws.com"
+  source_arn    = "${aws_cloudwatch_event_rule.dbgen.arn}"
+}
 
 resource "aws_s3_bucket" "bucket" {
   bucket = "tf-${var.base_name}-bucket"
