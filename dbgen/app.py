@@ -8,7 +8,7 @@ from backend.api.config import BaseConfig
 from backend.api.models import db
 from flask import Flask
 
-def gen():
+def gen(event, context):
     app = Flask(__name__)
     app.config.from_object(BaseConfig)
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
