@@ -19,7 +19,7 @@ info "Done"
 
 epoch=$(date +%s)
 epoch_target=$((epoch + 60 * $gen_extension))
-read year month day hour minute < <(date -d @$epoch_target +'%-Y %-m %-d %-H %-M')
+read year month day hour minute < <(date -u -d @$epoch_target +'%-Y %-m %-d %-H %-M')
 
 export TF_VAR_dbgen_schedule="cron($minute $hour $day $month ? $year)"
 
