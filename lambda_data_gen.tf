@@ -1,4 +1,19 @@
-resource "aws_iam_role" "iam_for_lambda" {
+resource "aws_security_group" "lambda_sg" {
+  vpc_id = "${aws_vpc.main.id}"
+  name   = "tf-${var.base_name}-lambda-sg"
+
+  egress {
+    from_port = 0
+    to_port   = 0
+    protocol  = "-1"
+
+    cidr_blocks = [
+      "0.0.0.0/0",
+    ]
+  }
+}
+
+resource "aws_iam_role" "lambda_iam" {
   name = "iam_for_lambda"
 
   assume_role_policy = <<EOF
@@ -25,6 +40,11 @@ resource "aws_lambda_function" "gen_db" {
   handler          = "app.gen"
   source_code_hash = "${base64sha256(file("dbgen/function.zip"))}"
   runtime          = "python3.6"
+
+  vpc_config {
+    subnet_ids = ["${aws_subnet.main.*.id}"]
+    security_group_ids = ["${aws_security_group.lambda_sg.id}"]
+  }
 
   environment {
     variables = {
