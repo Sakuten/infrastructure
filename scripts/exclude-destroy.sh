@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 script_root=$(dirname $0)
 
 source $script_root/lib/schedule.sh
