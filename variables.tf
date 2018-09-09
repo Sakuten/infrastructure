@@ -79,7 +79,7 @@ variable "health_check_path" {
 }
 
 variable "dbgen_archive_path" {
-  default = "dbgen/function.zip"
+  default = "dbgen_function.zip"
 }
 
 variable "drawer_archive_path" {

@@ -1,4 +1,4 @@
-FILE?=./function.zip
+FILE?=.,/dbgen_function.zip
 DELIVERABLE=${abspath ${FILE}}
 
 ${DELIVERABLE}: $(wildcard ./*.py) Pipfile.lock
