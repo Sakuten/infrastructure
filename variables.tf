@@ -4,7 +4,7 @@ variable "base_name" {
 
 variable "aws_region" {
   description = "The AWS region to create things in."
-  default     = "us-west-2"
+  default     = "ap-northeast-1"
 }
 
 variable "az_count" {
