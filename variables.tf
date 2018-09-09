@@ -65,3 +65,7 @@ variable "domain" {
 variable "netlify_domain" {
   default = "sakuten-deployment.netlify.com"
 }
+
+variable "dbgen_archive_path" {
+  default = "dbgen/function.zip"
+}

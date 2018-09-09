@@ -24,8 +24,8 @@ resource "aws_s3_bucket" "bucket" {
 resource "aws_s3_bucket_object" "lambda_function_archive" {
   bucket = "${aws_s3_bucket.bucket.id}"
   key    = "lambda_function_archive"
-  source = "dbgen/function.zip"
-  etag = "${md5(file("dbgen/function.zip"))}"
+  source = "${var.dbgen_archive_path}"
+  etag = "${md5(file("${var.dbgen_archive_path}"))}"
 }
 
 resource "aws_lambda_function" "dbgen" {
@@ -34,7 +34,7 @@ resource "aws_lambda_function" "dbgen" {
   function_name    = "generate_initial_db"
   role             = "${aws_iam_role.lambda_iam.arn}"
   handler          = "app.gen"
-  source_code_hash = "${base64sha256(file("dbgen/function.zip"))}"
+  source_code_hash = "${base64sha256(file("${var.dbgen_archive_path}"))}"
   runtime          = "python3.6"
   memory_size      = 512
   timeout          = 10
