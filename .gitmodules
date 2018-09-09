@@ -1,3 +1,6 @@
 [submodule "frontend"]
 	path = frontend
 	url = https://github.com/Sakuten/frontend.git
+[submodule "dbgen/backend"]
+	path = dbgen/backend
+	url = https://github.com/Sakuten/backend.git

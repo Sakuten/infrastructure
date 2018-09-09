@@ -19,6 +19,7 @@ variable "secret_key" {}
 variable "recaptcha_secret_key" {}
 variable "db_username" {}
 variable "db_password" {}
+variable "dbgen_schedule" {}
 
 variable "ssh_public_key" {}
 
@@ -67,4 +68,8 @@ variable "netlify_domain" {
 
 variable "health_check_path" {
   default = "/lotteries"
+}
+
+variable "dbgen_archive_path" {
+  default = "dbgen/function.zip"
 }
