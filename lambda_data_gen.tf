@@ -47,7 +47,7 @@ resource "aws_s3_bucket_object" "lambda_function_archive" {
   bucket = "${aws_s3_bucket.bucket.id}"
   key    = "lambda_function_archive"
   source = "dbgen/function.zip"
-  source_code_hash = "${md5(file("dbgen/function.zip"))}"
+  etag = "${md5(file("dbgen/function.zip"))}"
 }
 
 resource "aws_lambda_function" "gen_db" {
