@@ -72,5 +72,5 @@ resource "aws_lambda_function" "gen_db" {
     }
   }
 
-  depends_on = ["aws_iam_role_policy_attachment.lamba_exec_role_eni"]
+  depends_on = ["aws_iam_role_policy_attachment.lamba_exec_role_eni", "aws_s3_bucket_object.lambda_function_archive"]
 }
