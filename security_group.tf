@@ -71,3 +71,17 @@ resource "aws_security_group" "db" {
   }
 }
 
+resource "aws_security_group" "lambda_sg" {
+  vpc_id = "${aws_vpc.main.id}"
+  name   = "tf-${var.base_name}-lambda-sg"
+
+  egress {
+    from_port = 0
+    to_port   = 0
+    protocol  = "-1"
+
+    cidr_blocks = [
+      "0.0.0.0/0",
+    ]
+  }
+}

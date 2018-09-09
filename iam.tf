@@ -83,3 +83,27 @@ resource "aws_iam_role_policy" "instance" {
   policy = "${data.template_file.instance_profile.rendered}"
 }
 
+resource "aws_iam_role" "lambda_iam" {
+  name = "iam_for_lambda"
+
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "Service": "lambda.amazonaws.com"
+      },
+      "Effect": "Allow",
+      "Sid": ""
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy_attachment" "lamba_exec_role_eni" {
+  role = "${aws_iam_role.lambda_iam.name}"
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+}
