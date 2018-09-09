@@ -12,7 +12,6 @@ cd "${script_root}/.."
 info "Generating function.zip"
 
 cd dbgen
-make install
 make
 cd ..
 

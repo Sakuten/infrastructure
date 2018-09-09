@@ -7,7 +7,6 @@ ${DELIVERABLE}: $(wildcard ./*.py) Pipfile.lock
 	$(eval VENV = $(shell pipenv --venv))
 	cd ${VENV}/lib/python3.6/site-packages && zip -r9 ${DELIVERABLE} ./
 
-.PHONY: install
-install: Pipfile
+Pipfile.lock: Pipfile
 	pipenv install
 
