@@ -6,7 +6,6 @@ from urllib.error import HTTPError
 env_list = os.environ["ID_LIST_FILE"]
 env_host = os.getenv("API_HOST", "api.sakuten.jp")
 env_protocol_ = os.getenv("API_PROTOCOL", "https")
-env_yes_ = os.getenv("CONFIRM", "false") == "true"
 
 with open(env_list, 'r') as f:
     id_list = json.load(f)
@@ -42,14 +41,6 @@ admin_cred = {
 
 response = post_json('auth', admin_cred)
 token = response['token']
-
-if not env_yes:
-    print('Attempt to draw lotteries.')
-    print('Proceed? [ny] >', end='')
-    ans = input()
-    if ans != 'y':
-        print('Abort.', file=sys.stderr)
-        sys.exit(-1)
 
 # POST /draw_all
 response_draw = post_json('draw_all', None, token)
