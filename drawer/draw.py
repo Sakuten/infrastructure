@@ -1,22 +1,14 @@
 import json
 import sys
-import argparse
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError
 
-parser = argparse.ArgumentParser(
-    description='Draw currently available lotteries')
-parser.add_argument("-l", "--list", type=str,
-                    required=True, help="ID list json file path")
-parser.add_argument("-a", "--host", type=str,
-                    default="localhost", help="API hostname")
-parser.add_argument("-p", "--protocol", type=str,
-                    default="http", help="The protocol to use")
-parser.add_argument("-y", "--yes", action='store_true',
-                    help="Don't confirm before drawing")
-args = parser.parse_args()
+env_list = os.environ["ID_LIST_FILE"]
+env_host = os.getenv("API_HOST", "api.sakuten.jp")
+env_protocol_ = os.getenv("API_PROTOCOL", "https")
+env_yes_ = os.getenv("CONFIRM", "false") == "true"
 
-with open(args.list, 'r') as f:
+with open(env_list, 'r') as f:
     id_list = json.load(f)
 
 # Take one 'admin' user from list
@@ -28,7 +20,7 @@ def post_json(path, data=None, token=None):
     if token:
         headers['Authorization'] = 'Bearer ' + token
     json_data = json.dumps(data).encode("utf-8") if data else None
-    url = '{}://{}/{}'.format(args.protocol, args.host, path)
+    url = '{}://{}/{}'.format(env_protocol, env_host, path)
     request = Request(url, data=json_data,
                       headers=headers, method='POST')
     try:
@@ -51,7 +43,7 @@ admin_cred = {
 response = post_json('auth', admin_cred)
 token = response['token']
 
-if not args.yes:
+if not env_yes:
     print('Attempt to draw lotteries.')
     print('Proceed? [ny] >', end='')
     ans = input()
