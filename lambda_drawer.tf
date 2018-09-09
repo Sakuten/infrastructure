@@ -6,7 +6,7 @@ resource "aws_cloudwatch_event_rule" "tp" {
 
 resource "aws_cloudwatch_event_target" "tp_target" {
   count     = 4
-  rule      = "${element(aws_cloudwatch_event_rule.tp, count.index).name}"
+  rule      = "${element(aws_cloudwatch_event_rule.tp.*.name, count.index)}"
   arn       = "${aws_lambda_function.drawer.arn}"
 }
 
@@ -16,6 +16,6 @@ resource "aws_lambda_permission" "allow_call" {
   action        = "lambda:InvokeFunction"
   function_name = "${aws_lambda_function.drawer.function_name}"
   principal     = "events.amazonaws.com"
-  source_arn    = "${element(aws_cloudwatch_event_rule.tp, count.index).arn}"
+  source_arn    = "${element(aws_cloudwatch_event_rule.tp.*.arn, count.index)}"
 }
 
