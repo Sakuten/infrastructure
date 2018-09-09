@@ -1,5 +1,7 @@
 # Sakuten/infrastructure
 
+![figure](docs/figure.svg)
+
 ## Deploy
 
 ```bash
