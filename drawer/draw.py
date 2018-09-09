@@ -3,16 +3,9 @@ import sys
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError
 
-env_list = os.environ["ID_LIST_FILE"]
+env_admin_sid = os.environ["ADMIN_SECRET_ID"]
 env_host = os.getenv("API_HOST", "api.sakuten.jp")
 env_protocol_ = os.getenv("API_PROTOCOL", "https")
-
-with open(env_list, 'r') as f:
-    id_list = json.load(f)
-
-# Take one 'admin' user from list
-admin_ids = next(cred for cred in id_list if cred['authority'] == 'admin')
-
 
 def post_json(path, data=None, token=None):
     headers = {"Content-Type": "application/json"}
@@ -35,7 +28,7 @@ def post_json(path, data=None, token=None):
 
 # Login as admin
 admin_cred = {
-    'id': admin_ids['secret_id'],
+    'id': env_admin_sid,
     'g-recaptcha-response': ''
 }
 
