@@ -10,7 +10,7 @@ resource "aws_cloudwatch_event_target" "tp_target" {
   arn       = "${aws_lambda_function.drawer.arn}"
 }
 
-resource "aws_lambda_permission" "allow_call" {
+resource "aws_lambda_permission" "allow_call_tp" {
   count         = 4
   statement_id  = "AllowExecutionFromCloudWatch"
   action        = "lambda:InvokeFunction"
