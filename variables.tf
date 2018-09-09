@@ -25,6 +25,10 @@ variable "admin_secret_id" {}
 
 variable "ssh_public_key" {}
 
+variable "ecs_image_url" {
+  default = "sakuten/backend:latest"
+}
+
 variable "acme_server_url" {
   default = "https://acme-staging-v02.api.letsencrypt.org/directory"
 }
