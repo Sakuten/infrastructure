@@ -9,7 +9,7 @@ gen_extension=${1:-10}
 
 cd "${script_root}/.."
 
-info "Generating function.zip"
+info "Generating dbgen_function.zip"
 
 cd dbgen
 make
