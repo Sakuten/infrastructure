@@ -78,7 +78,7 @@ variable "netlify_domain" {
 }
 
 variable "health_check_path" {
-  default = "/lotteries"
+  default = "/health"
 }
 
 variable "dbgen_archive_path" {
