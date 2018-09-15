@@ -93,6 +93,17 @@ variable "drawer_source_path" {
   default = "drawer/"
 }
 
+variable "timepoints" {
+  default = <<EOF
+[
+  ["8:50",  "9:20"],
+  ["10:15", "10:45"],
+  ["12:25", "12:55"],
+  ["13:50", "14:20"]
+]
+EOF
+}
+
 variable "tps" {
   default = [
     "cron(23 0 16,17 9 ? 2018)",

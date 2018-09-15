@@ -16,6 +16,15 @@
         "name": "DATABASE_URL",
         "value": "${database_url}"
       }, {
+        "name": "START_DATETIME",
+        "value": "${start_datetime}"
+      }, {
+        "name": "END_DATETIME",
+        "value": "${end_datetime}"
+      }, {
+        "name": "TIMEPOINTS",
+        "value": "${timepoints}"
+      }, {
         "name": "RECAPTCHA_SECRET_KEY",
         "value": "${recaptcha_secret_key}"
       }
