@@ -38,7 +38,7 @@ variable "db_instance_type" {
 }
 
 variable "instance_type" {
-  default     = "t3.large"
+  default     = "t2.large"
   description = "AWS instance type"
 }
 
