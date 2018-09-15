@@ -54,7 +54,7 @@ variable "asg_max" {
 
 variable "asg_desired" {
   description = "Desired numbers of servers in ASG"
-  default     = "2"
+  default     = "3"
 }
 
 variable "admin_cidr_ingress" {
