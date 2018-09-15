@@ -93,17 +93,17 @@ variable "drawer_source_path" {
   default = "drawer/"
 }
 
-variable "start_datetime" {
-  default = "2018-9-16 8:40:00"
-}
+/* variable "start_datetime" { */
+/*   default = "2018-9-16 8:40:00" */
+/* } */
 
-variable "end_datetime" {
-  default = "2018-9-17 16:00:00"
-}
+/* variable "end_datetime" { */
+/*   default = "2018-9-17 16:00:00" */
+/* } */
 
-variable "timepoints" {
-  default = "[[\\\"8:50\\\",  \\\"9:20\\\"], [\\\"10:15\\\", \\\"10:45\\\"], [\\\"12:25\\\", \\\"12:55\\\"], [\\\"13:50\\\", \\\"14:20\\\"]]"
-}
+/* variable "timepoints" { */
+/*   default = "[[\\\"8:50\\\",  \\\"9:20\\\"], [\\\"10:15\\\", \\\"10:45\\\"], [\\\"12:25\\\", \\\"12:55\\\"], [\\\"13:50\\\", \\\"14:20\\\"]]" */
+/* } */
 
 variable "tps" {
   default = [

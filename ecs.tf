@@ -15,9 +15,9 @@ data "template_file" "task_definition" {
     host_port = "${var.alb_container_port}"
     recaptcha_secret_key = "${var.recaptcha_secret_key}"
     database_url = "postgresql://${var.db_username}:${var.db_password}@${aws_db_instance.db.endpoint}/postgres"
-    timepoints = "${var.timepoints}"
-    start_datetime = "${var.start_datetime}"
-    end_datetime = "${var.end_datetime}"
+    /* timepoints = "${var.timepoints}" */
+    /* start_datetime = "${var.start_datetime}" */
+    /* end_datetime = "${var.end_datetime}" */
   }
 }
 
