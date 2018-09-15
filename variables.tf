@@ -93,6 +93,14 @@ variable "drawer_source_path" {
   default = "drawer/"
 }
 
+variable "start_datetime" {
+  default = "2018-9-16 8:40:00"
+}
+
+variable "end_datetime" {
+  default = "2018-9-17 16:00:00"
+}
+
 variable "timepoints" {
   default = <<EOF
 [
