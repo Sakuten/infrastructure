@@ -27,6 +27,7 @@ resource "aws_db_instance" "db" {
   username                = "${var.db_username}"
   password                = "${var.db_password}"
   backup_retention_period = 7
+  multi_az                = true
   vpc_security_group_ids  = ["${aws_security_group.db.id}"]
   db_subnet_group_name    = "${aws_db_subnet_group.main.name}"
   parameter_group_name = "${aws_db_parameter_group.db_pg.name}"
