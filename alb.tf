@@ -13,6 +13,8 @@ resource "aws_alb" "main" {
   name            = "tf-${var.base_name}-alb-ecs"
   subnets         = ["${aws_subnet.main.*.id}"]
   security_groups = ["${aws_security_group.lb_sg.id}"]
+
+  depends_on = ["aws_internet_gateway.gw"]
 }
 
 resource "aws_alb_listener" "front_end" {
