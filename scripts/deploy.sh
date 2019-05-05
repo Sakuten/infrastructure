@@ -7,7 +7,7 @@ script_root=$(dirname $0)
 source $script_root/lib/schedule.sh
 source $script_root/lib/log.sh
 
-gen_extension=${1:-10}
+gen_extension=${1:-60}
 
 cd "${script_root}/.."
 
