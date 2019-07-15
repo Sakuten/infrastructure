@@ -7,7 +7,7 @@ See the following instructions to install `tfenv`:
 ## 1. Delete existing `terraform` installation
 
 ```bash
-# this operation may requires root privilege
+# this operation may require root privilege
 sudo rm "$(which terraform)"
 ```
 
@@ -17,4 +17,4 @@ sudo rm "$(which terraform)"
 brew install tfenv
 ```
 
-for manual installation, see [tfutils/tfenv](https://github.com/tfutils/tfenv)
+for the manual installation, see [tfutils/tfenv](https://github.com/tfutils/tfenv)

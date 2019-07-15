@@ -4,7 +4,7 @@
 
 ## Deploy
 
-if you're not using `tfenv`, see [USE_TFENV.md](/USE_TFENV.md)
+if you're not using `tfenv`, see [USE_TFENV.md](/USE_TFENV.md) first
 
 ```bash
 tfenv install min-required
