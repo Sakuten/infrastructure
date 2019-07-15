@@ -3,13 +3,13 @@ provider "aws" {
   access_key = "${var.aws_access_key}"
   secret_key = "${var.aws_secret_key}"
 
-  version = "~> 2.7.0"
+  version = "~> 2.6.0"
 }
 
 provider "acme" {
   server_url = "${var.acme_server_url}"
 
-  version = "~> 1.2.0"
+  version = "~> 1.1.0"
 }
 
 provider "archive" {
@@ -21,5 +21,5 @@ provider "template" {
 }
 
 provider "tls" {
-  version = "~> 2.0.0"
+  version = "~> 1.2.0"
 }
