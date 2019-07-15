@@ -4,7 +4,12 @@
 
 ## Deploy
 
+if you're not using `tfenv`, see [USE_TFENV.md](/USE_TFENV.md)
+
 ```bash
+tfenv install min-required
+tfenv use min-required
+
 cp <SOMEWHERE> dbgen/ids.json # Add ids.json
 
 cp terraform.tfvars{.sample,}
