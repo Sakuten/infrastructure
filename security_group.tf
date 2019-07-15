@@ -59,7 +59,7 @@ resource "aws_security_group" "db" {
   name        = "db_server"
   description = "a security group on db of sakuten main vpc"
   vpc_id      = "${aws_vpc.main.id}"
-  tags {
+  tags = {
       Name = "db"
   }
 

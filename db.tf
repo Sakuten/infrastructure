@@ -1,7 +1,7 @@
 resource "aws_db_subnet_group" "main" {
   name        = "db_subnet"
   subnet_ids  = ["${aws_subnet.main.*.id}"]
-  tags {
+  tags = {
       Name = "db_subnet"
   }
 }

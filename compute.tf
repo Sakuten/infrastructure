@@ -10,7 +10,7 @@ resource "aws_autoscaling_group" "app" {
 data "template_file" "cloud_config" {
   template = "${file("${path.module}/cloud-config.yml")}"
 
-  vars {
+  vars = {
     aws_region         = "${var.aws_region}"
     ecs_cluster_name   = "${aws_ecs_cluster.main.name}"
     ecs_log_level      = "info"
