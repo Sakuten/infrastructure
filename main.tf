@@ -1,5 +1,5 @@
-
-data "aws_availability_zones" "available" {}
+data "aws_availability_zones" "available" {
+}
 
 ## CloudWatch Logs
 
@@ -10,3 +10,4 @@ resource "aws_cloudwatch_log_group" "ecs" {
 resource "aws_cloudwatch_log_group" "app" {
   name = "tf-${var.base_name}-ecs-group/app-backend"
 }
+

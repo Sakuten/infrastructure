@@ -12,18 +12,35 @@ variable "az_count" {
   default     = "2"
 }
 
-variable "aws_access_key" {}
-variable "aws_secret_key" {}
+variable "aws_access_key" {
+}
 
-variable "secret_key" {}
-variable "recaptcha_secret_key" {}
-variable "db_username" {}
-variable "db_password" {}
-variable "dbgen_schedule" {}
-variable "acme_email" {}
-variable "admin_secret_id" {}
+variable "aws_secret_key" {
+}
 
-variable "ssh_public_key" {}
+variable "secret_key" {
+}
+
+variable "recaptcha_secret_key" {
+}
+
+variable "db_username" {
+}
+
+variable "db_password" {
+}
+
+variable "dbgen_schedule" {
+}
+
+variable "acme_email" {
+}
+
+variable "admin_secret_id" {
+}
+
+variable "ssh_public_key" {
+}
 
 variable "ecs_image_url" {
   default = "sakuten/backend:latest"
@@ -62,11 +79,11 @@ variable "admin_cidr_ingress" {
 }
 
 variable "container_port" {
-  default     = "80"
+  default = "80"
 }
 
 variable "alb_container_port" {
-  default     = "8080"
+  default = "8080"
 }
 
 variable "domain" {
@@ -113,3 +130,4 @@ variable "tps" {
     "cron(23 5 16,17 9 ? 2018)",
   ]
 }
+

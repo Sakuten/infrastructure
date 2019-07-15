@@ -16,11 +16,12 @@ resource "aws_iam_role" "ecs_service" {
   ]
 }
 EOF
+
 }
 
 resource "aws_iam_role_policy" "ecs_service" {
   name = "tf_ecs_policy"
-  role = "${aws_iam_role.ecs_service.name}"
+  role = aws_iam_role.ecs_service.name
 
   policy = <<EOF
 {
@@ -41,17 +42,18 @@ resource "aws_iam_role_policy" "ecs_service" {
   ]
 }
 EOF
+
 }
 
 resource "aws_iam_instance_profile" "app" {
-  name = "tf-${var.base_name}-ecs-instprofile"
-  role = "${aws_iam_role.app_instance.name}"
+name = "tf-${var.base_name}-ecs-instprofile"
+role = aws_iam_role.app_instance.name
 }
 
 resource "aws_iam_role" "app_instance" {
-  name = "tf-${var.base_name}-ecs-instance-role"
+name = "tf-${var.base_name}-ecs-instance-role"
 
-  assume_role_policy = <<EOF
+assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -66,27 +68,28 @@ resource "aws_iam_role" "app_instance" {
   ]
 }
 EOF
+
 }
 
 data "template_file" "instance_profile" {
-  template = "${file("${path.module}/instance-profile-policy.json")}"
+template = file("${path.module}/instance-profile-policy.json")
 
-  vars = {
-    app_log_group_arn = "${aws_cloudwatch_log_group.app.arn}"
-    ecs_log_group_arn = "${aws_cloudwatch_log_group.ecs.arn}"
-  }
+vars = {
+app_log_group_arn = aws_cloudwatch_log_group.app.arn
+ecs_log_group_arn = aws_cloudwatch_log_group.ecs.arn
+}
 }
 
 resource "aws_iam_role_policy" "instance" {
-  name   = "TfEcsExampleInstanceRole"
-  role   = "${aws_iam_role.app_instance.name}"
-  policy = "${data.template_file.instance_profile.rendered}"
+name = "TfEcsExampleInstanceRole"
+role = aws_iam_role.app_instance.name
+policy = data.template_file.instance_profile.rendered
 }
 
 resource "aws_iam_role" "lambda_iam" {
-  name = "iam_for_lambda"
+name = "iam_for_lambda"
 
-  assume_role_policy = <<EOF
+assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -101,9 +104,11 @@ resource "aws_iam_role" "lambda_iam" {
   ]
 }
 EOF
+
 }
 
 resource "aws_iam_role_policy_attachment" "lamba_exec_role_eni" {
-  role = "${aws_iam_role.lambda_iam.name}"
+  role       = aws_iam_role.lambda_iam.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
 }
+
