@@ -1,7 +1,3 @@
-provider "acme" {
-  server_url = "${var.acme_server_url}"
-}
-
 resource "tls_private_key" "private_key" {
   algorithm = "RSA"
 }

@@ -7,6 +7,8 @@ provider "aws" {
 }
 
 provider "acme" {
+  server_url = "${var.acme_server_url}"
+
   version = "~> 1.2.0"
 }
 
